@@ -129,15 +129,11 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> results = new ArrayList<>();
 
-        jobSearch:
         for (HashMap<String, String> job: allJobs) {
             for (Map.Entry<String, String> entry: job.entrySet()) {
                 if (entry.getValue().toLowerCase().contains(value.toLowerCase())) {
                     results.add(job);
                     break;
-                } else {
-                    System.out.println("Search term not found.");
-                    break jobSearch;
                 }
             }
         }

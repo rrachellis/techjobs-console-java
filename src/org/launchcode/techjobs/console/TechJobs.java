@@ -12,7 +12,7 @@ public class TechJobs {
 
     private static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -62,13 +62,13 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                        printJobs(JobData.findByValue(searchTerm));
-                    } else {
+                    printJobs(JobData.findByValue(searchTerm));
+                } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
-                }
                 }
             }
         }
+    }
 
     // ﻿Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
@@ -104,7 +104,7 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
@@ -112,14 +112,16 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        for (HashMap<String, String> job: someJobs) {
+        if (someJobs.isEmpty() == true) {
+            System.out.println("Search term not found.");
+        }
+        for (HashMap<String, String> job : someJobs) {
             System.out.println("");
             System.out.println("**********");
             System.out.println("");
-            for (Map.Entry<String, String> entry: job.entrySet()) {
+            for (Map.Entry<String, String> entry : job.entrySet()) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
             }
         }
-
     }
 }
